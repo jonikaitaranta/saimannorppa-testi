@@ -24,6 +24,7 @@
         </div>
         <button type="button" onclick="toggleFullscreen();">Koko ruudun tila</button>
         <span style="padding: 0 0.25em 0 0">Näytä kartta koko ruudun tilassa</span>
+		<script src="https://unpkg.com/esri-leaflet@3.0.11aflet.js</script>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/multi-style-layer.js"></script>
@@ -125,14 +126,17 @@
         }
         map.createPane('pane_Taustakartta_0');
         map.getPane('pane_Taustakartta_0').style.zIndex = 400;
-        var layer_Taustakartta_0 = L.tileLayer('https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer', {
-            pane: 'pane_Taustakartta_0',
-            opacity: 1.0,
-            attribution: '',
-            minZoom: 8,
-            maxZoom: 14,
-            minNativeZoom: 0,
-            maxNativeZoom: 20
+        
+var layer_Taustakartta_0 = L.esri.Vector.vectorTileLayer(
+  'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer',
+  {
+    pane: 'pane_Taustakartta_0',
+    opacity: 1.0,
+    attribution: '© Esri',
+    minZoom: 8,
+    maxZoom: 14
+  }
+
         });
         layer_Taustakartta_0;
         map.addLayer(layer_Taustakartta_0);
